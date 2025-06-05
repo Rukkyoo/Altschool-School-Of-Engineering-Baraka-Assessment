@@ -124,3 +124,7 @@
   max-width: 100%;
   padding: 15px 0;
 }
+
+#calculator-operator-equal:hover {
+  background-color: rgb(74, 74, 74);
+}
