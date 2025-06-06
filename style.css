@@ -30,6 +30,7 @@
   align-items: center;
   gap: 25px;
   max-width: 400px;
+  /* height: 400px; */
   width: 100%;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
@@ -71,18 +72,20 @@
 
 .calculator-keypad {
   width: 60%;
-  justify-content: center;
+  justify-content: center; /* testing */
 }
 
 .calculator-operator {
   width: 35%;
-  justify-content: center;
+  justify-content: center; /* testing */
 }
 
 .calculator-keypad-num,
 #calculator-keypad-clear,
 .calculator-operator-sym,
-#calculator-operator-equal {
+#calculator-operator-equal,
+#calculator-keypad-backspace,
+#calculator-keypad-history {
   background-color: rgb(52, 48, 70);
   color: white;
   text-align: center;
@@ -94,7 +97,9 @@
 }
 
 .calculator-keypad-num,
-#calculator-keypad-clear {
+#calculator-keypad-clear,
+#calculator-keypad-backspace,
+#calculator-keypad-history {
   flex: 1 0 30%;
   max-width: 30%;
 }
@@ -104,7 +109,9 @@
 }
 
 .calculator-keypad-num:hover,
-#calculator-keypad-clear:hover {
+#calculator-keypad-clear:hover,
+#calculator-keypad-backspace:hover,
+#calculator-keypad-history:hover {
   background-color: rgb(36, 29, 65);
 }
 
@@ -127,4 +134,46 @@
 
 #calculator-operator-equal:hover {
   background-color: rgb(74, 74, 74);
+}
+
+
+#calculator-keypad-history-modal {
+  background-color: rgba(41, 40, 40, 0.5);
+  color: white;
+  width: 100%;
+  display: none;
+  padding: 10px;
+  height: 310px;
+  border-radius: 12px;
+  justify-content: center;
+}
+
+#calculator-keypad-history-modal-close {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    text-align: center;
+    border-radius: 12px;
+    padding: 15px 0;
+    position: relative;
+    top: 10.5%;
+    right: -90%;
+    font-size: 24px;
+    font-weight: 900;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    text-align: right;
+}
+
+#calculator-keypad-history-list {
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+li{
+    display: block;
 }
