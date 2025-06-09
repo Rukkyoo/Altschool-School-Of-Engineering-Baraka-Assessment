@@ -15,6 +15,9 @@ const historyBtn = document.getElementById("calculator-keypad-history");
 const historyTab = document.getElementById("calculator-keypad-history-modal");
 let historyTabList = document.getElementById("calculator-keypad-history-list"); // List where the history of calculations will be displayed
 
+// Initialize history array to store calculation history
+let historyArray = [];
+
 // Event listener for the calculator buttons (To know which number is clicked)
 calculatorKeyPad.addEventListener("click", (event) => {
   if (event.target.classList.contains("calculator-keypad-num")) {
@@ -48,7 +51,7 @@ calculatorEqual.addEventListener("click", () => {
     console.log("Result:", result);
     console.log("Equal button clicked");
     calculatorDisplayAnswer.textContent = result;
-    finalResult = expression + " = " + result;
+    finalResult = numbers + " = " + result; // Use original numbers for display
     displayPanel.innerHTML = finalResult; // Displays the result
   } else if (expression.includes("%")) {
     // Replace % with /100 for percentage operation
@@ -57,19 +60,21 @@ calculatorEqual.addEventListener("click", () => {
     console.log("Result:", result);
     console.log("Equal button clicked");
     calculatorDisplayAnswer.textContent = result;
-    finalResult = expression + " = " + result;
+    finalResult = numbers + " = " + result; // Use original numbers for display
     displayPanel.innerHTML = finalResult; // Displays the result
   } else {
     const result = eval(expression); // Carries out the calculation of the string  "numbers"
     console.log("Result:", result);
     console.log("Equal button clicked");
     calculatorDisplayAnswer.textContent = result;
-    finalResult = expression + " = " + result;
+    finalResult = numbers + " = " + result;
     console.log(finalResult);
     displayPanel.innerHTML = finalResult; // Displays the result
   }
-  // Using localstorage to save the calculation history
-  localStorage.setItem("calculatorHistory", finalResult);
+  
+  // Simply push to the history array - no localStorage complications!
+  historyArray.push(finalResult);
+  console.log("History:", historyArray);
 });
 
 // Event listener for the clear button (clear the display and reset)
@@ -87,6 +92,19 @@ backSpaceBtn.addEventListener("click", () => {
   }
 });
 
+// Function to render history list
+const renderHistoryList = () => {
+  // Clear the existing list first
+  historyTabList.innerHTML = "";
+  
+  // Create list items for each history entry
+  historyArray.forEach((calculation) => {
+    const li = document.createElement("li");
+    li.textContent = calculation;
+    historyTabList.appendChild(li);
+  });
+};
+
 // Event listener for the history button (open the history tab)
 const openHistoryTab = () => {
   isHistoryTabOpen = true;
@@ -96,18 +114,8 @@ const openHistoryTab = () => {
     calculatorOperator.style.display = "none"; // Hide the operator buttons
     historyBtn.classList.add("active"); // Add active class to the history button
 
-    // Get the existing history from localStorage
-    const existingHistory = localStorage.getItem("calculatorHistory");
-
-    // If there is existing history, append it to the history tab list
-    if (existingHistory) {
-      const historyItems = existingHistory.split("\n"); // Split the history into individual items
-      historyItems.forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        historyTabList.appendChild(li);
-      });
-    }
+    // Render the history list (this will clear and rebuild the list)
+    renderHistoryList();
   }
 };
 
