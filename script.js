@@ -72,7 +72,7 @@ const calculateResult = () => {
     displayPanel.innerHTML = finalResult; // Displays the result
   }
   
-  // Simply push to the history array - no localStorage complications!
+  // Push to the history array
   historyArray.push(finalResult);
   console.log("History:", historyArray);
 };
