@@ -41,7 +41,7 @@ calculatorOperator.addEventListener("click", (event) => {
 });
 
 // Event listener for the equal button (calculation operation)
-calculatorEqual.addEventListener("click", () => {
+const calculateResult = () => {
   let expression = numbers;
   let finalResult;
   if (expression.includes("^")) {
@@ -75,7 +75,7 @@ calculatorEqual.addEventListener("click", () => {
   // Simply push to the history array - no localStorage complications!
   historyArray.push(finalResult);
   console.log("History:", historyArray);
-});
+};
 
 // Event listener for the clear button (clear the display and reset)
 calculatorClear.addEventListener("click", () => {
@@ -129,3 +129,28 @@ const closeHistoryTab = () => {
     historyBtn.classList.remove("active"); // Remove active class from the history button
   }
 };
+
+// Event listener to document for keydown event
+document.addEventListener("keydown", (event) => {
+  // Check if the pressed key is a number or an operator
+  if (event.key >= 0 && event.key <= 9) {
+    // If the pressed key is a number, append it to the displayPanel
+    displayPanel.innerHTML += event.key;
+    numbers += event.key;
+  } else if (event.key === "+" || event.key === "-" || event.key === "*" || event.key === "/" || event.key === "%") {
+    // If the pressed key is an operator, append it to the displayPanel
+    displayPanel.innerHTML += event.key;
+    numbers += event.key;
+  } else if (event.key === "=") {
+    // If the pressed key is the equals sign, perform the calculation
+    calculateResult();
+  } else if (event.key === "Backspace") {
+    // If the pressed key is the backspace key, remove the last character from the displayPanel
+    numbers = numbers.slice(0, -1);
+    displayPanel.innerHTML = numbers;
+  } else if (event.key === "Escape") {
+    // If the pressed key is the escape key, clear the displayPanel
+    displayPanel.innerHTML = "";
+    numbers = "";
+  }
+});
