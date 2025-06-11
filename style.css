@@ -110,6 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
 }
 
 .calculator-keypad-num:hover,
@@ -160,10 +161,11 @@
 }
 
 #calculator-keypad-history{
-  padding: 0 50px 0 50px;
+  padding: 0 60px 0 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
 }
 
 #calculator-keypad-history-modal {
