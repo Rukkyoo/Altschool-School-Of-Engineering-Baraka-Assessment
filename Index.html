@@ -17,14 +17,17 @@
           </div>
         </div>
         <div class="calculator-text-container">
-        <div id="calculator-keypad-history-modal">
-            <span id="calculator-keypad-history-modal-close" onclick="closeHistoryTab()">X</span>
+          <div id="calculator-keypad-history-modal">
+            <span
+              id="calculator-keypad-history-modal-close"
+              onclick="closeHistoryTab()"
+              >X</span
+            >
             <div id="calculator-keypad-history-modal-content">
-                <h2>History</h2>
-                <ul id="calculator-keypad-history-list">
-                </ul>
+              <h2>History</h2>
+              <ul id="calculator-keypad-history-list"></ul>
             </div>
-        </div>
+          </div>
           <div id="calculator-keypad" class="calculator-keypad">
             <span class="calculator-keypad-num">1</span>
             <span class="calculator-keypad-num">2</span>
@@ -37,9 +40,11 @@
             <span class="calculator-keypad-num">9</span>
             <span class="calculator-keypad-num">.</span>
             <span class="calculator-keypad-num">0</span>
-            <span id="calculator-keypad-backspace">←</span>
+            <span id="calculator-keypad-backspace"><img src="img.svg" /></span>
             <span id="calculator-keypad-clear">C</span>
-            <span id="calculator-keypad-history" onclick="openHistoryTab()">History</span>
+            <span id="calculator-keypad-history" onclick="openHistoryTab()"
+              >History</span
+            >
           </div>
           <div id="calculator-operator" class="calculator-operator">
             <span class="calculator-operator-sym">*</span>
@@ -48,7 +53,9 @@
             <span class="calculator-operator-sym">-</span>
             <span class="calculator-operator-sym">%</span>
             <span class="calculator-operator-sym">^</span>
-            <span onclick="calculateResult()" id="calculator-operator-equal">=</span>
+            <span onclick="calculateResult()" id="calculator-operator-equal"
+              >=</span
+            >
           </div>
         </div>
       </div>

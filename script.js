@@ -17,12 +17,17 @@ let historyTabList = document.getElementById("calculator-keypad-history-list"); 
 
 // Initialize history array to store calculation history
 let historyArray = [];
+displayPanel.innerHTML = 0
 
 // Event listener for the calculator buttons (To know which number is clicked)
 calculatorKeyPad.addEventListener("click", (event) => {
   if (event.target.classList.contains("calculator-keypad-num")) {
     const keyPadValue = event.target.textContent;
     console.log(keyPadValue);
+    // If the display is currently showing 0, replace it with the new input
+    if (displayPanel.innerHTML === "0") {
+      displayPanel.innerHTML = "";
+    }
     displayPanel.innerHTML += keyPadValue;
     numbers += keyPadValue;
     console.log(numbers);
@@ -80,7 +85,7 @@ const calculateResult = () => {
 // Event listener for the clear button (clear the display and reset)
 calculatorClear.addEventListener("click", () => {
   calculatorDisplayAnswer.textContent = ""; // Clear the answer display
-  displayPanel.innerHTML = ""; // Clear the display panel
+  displayPanel.innerHTML = 0; // Clear the display panel
   numbers = ""; // Reset the numbers string
 });
 
